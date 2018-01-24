@@ -87,7 +87,7 @@ public class Purse {
 		if (isFull()) {
 			return false;
 		} else if (coin.getValue() <= 0) {
-			return false;  
+			return false;
 		}
 		coins.add(coin);
 		return true;
