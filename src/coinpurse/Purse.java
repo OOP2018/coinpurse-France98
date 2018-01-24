@@ -84,7 +84,7 @@ public class Purse {
 	 * @return true if coin inserted, false if can't insert
 	 */
 	public boolean insert(Coin coin) {
-		if (isFull() == true) {
+		if (isFull()) {
 			return false;
 		} else if (coin.getValue() <= 0) {
 			return false;
