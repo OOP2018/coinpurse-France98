@@ -51,7 +51,7 @@ public class Coin implements Comparable<Coin>{
 		}
 		Coin other = (Coin) arg;
 		if(this.getValue() == other.getValue() && this.getCurrency().equalsIgnoreCase(other.getCurrency())){
-			return true;
+			return true; 
 		}
 		return false;
 	}
