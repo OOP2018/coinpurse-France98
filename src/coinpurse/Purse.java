@@ -2,6 +2,7 @@ package coinpurse;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class Purse {
 	/** Collection of objects in the purse. */
-	List<Coin> coins = new ArrayList<Coin>();
+	List<Valuable> money1 = new ArrayList<Valuable>();
 
 	/**
 	 * Capacity is maximum number of items the purse can hold. Capacity is set
@@ -37,7 +38,7 @@ public class Purse {
 	 * @return the number of coins in the purse
 	 */
 	public int count() {
-		return coins.size();
+		return money1.size();
 	}
 
 	/**
@@ -47,8 +48,8 @@ public class Purse {
 	 */
 	public double getBalance() {
 		double sum = 0;
-		for (int i = 0; i < coins.size(); i++) {
-			sum += coins.get(i).getValue();
+		for (int i = 0; i < money1.size(); i++) {
+			sum += money1.get(i).getValue();
 		}
 		return sum;
 	}
@@ -79,17 +80,17 @@ public class Purse {
 	 * Insert a coin into the purse. The coin is only inserted if the purse has
 	 * space for it and the coin has positive value. No worthless coins!
 	 * 
-	 * @param coin
+	 * @param money2
 	 *            is a Coin object to insert into purse
 	 * @return true if coin inserted, false if can't insert
 	 */
-	public boolean insert(Coin coin) {
+	public boolean insert(Valuable money2) {
 		if (isFull()) {
 			return false;
-		} else if (coin.getValue() <= 0) {
+		} else if (money2.getValue() <= 0) {
 			return false;
 		}
-		coins.add(coin);
+		money1.add(money2);
 		return true;
 
 	}
@@ -104,17 +105,19 @@ public class Purse {
 	 * @return array of Coin objects for money withdrawn, or null if cannot
 	 *         withdraw requested amount.
 	 */
-	public Coin[] withdraw(double amount) {
+	public Valuable[] withdraw(double amount) {
+		Comparator<Valuable> comp = new ValueComparator();
 		if (amount < 0) {
 			return null;
 		}
-		MoneyUtil.sortCoins(coins);
-		ArrayList<Coin> list = new ArrayList<Coin>();
+		Collections.sort(money1,comp);
+		Collections.reverse(money1);
+		ArrayList<Valuable> list = new ArrayList<Valuable>();
 		if (getBalance() >= amount) {
-			for (int i = coins.size() -1 ; i >= 0 ; i--) {
-				if (amount - coins.get(i).getValue() >= 0) {
-					amount = amount - coins.get(i).getValue();
-					list.add(coins.get(i));
+			for (int i = 0; i < money1.size() ; i++) {
+				if (amount - money1.get(i).getValue() >= 0) {
+					amount = amount - money1.get(i).getValue();
+					list.add(money1.get(i));
 				}
 			}
 		}
@@ -122,9 +125,9 @@ public class Purse {
 			return null;
 		}
 		for (int i = 0; i < list.size(); i++) {
-			coins.remove(list.get(i));
+			money1.remove(list.get(i));
 		}
-		Coin[] array = new Coin[list.size()];
+		Valuable[] array = new Valuable[list.size()];
 		list.toArray(array);
 		return array;
 	}
@@ -137,5 +140,8 @@ public class Purse {
 		return count() + " coins with value " + getBalance();
 	}
 
+	public List<Valuable> getMoney(){
+		return money1;
+	}
 }
 

@@ -75,16 +75,16 @@ public class ConsoleDialog {
     	// If so then use them without prompting for more.
     	String inline = console.nextLine().trim();
     	if (inline.isEmpty()) {
-    		System.out.print("Enter value of coin(s) to deposit on one line [eg: 5 0.5 1]: ");
+    		System.out.print("Enter value of money(s) to deposit on one line [eg: 5 0.5 1]: ");
     		inline = console.nextLine();
     	}
         // parse input line into numbers
         Scanner scanline = new Scanner(inline);
         while( scanline.hasNextDouble() ) {
             double value = scanline.nextDouble();
-            Coin coin = makeMoney(value);
-            System.out.printf("Deposit %s... ", coin.toString() );
-            boolean ok = purse.insert(coin);
+            Valuable money = makeMoney(value);
+            System.out.printf("Deposit %s... ", money.toString() );
+            boolean ok = purse.insert(money);
             System.out.println( (ok? "ok" : "FAILED") );
         }
         if ( scanline.hasNext() )
@@ -108,7 +108,7 @@ public class ConsoleDialog {
         
         if ( scanline.hasNextDouble() ) {
              double amount = scanline.nextDouble( );
-             Coin [] coins = purse.withdraw(amount);
+             Valuable [] coins = purse.withdraw(amount);
              if ( coins == null ) 
                 System.out.printf("Sorry, couldn't withdraw %.2g %s\n", amount, CURRENCY);
              else {
@@ -124,7 +124,10 @@ public class ConsoleDialog {
     }
     
     /** Make a Coin (or BankNote or whatever) using requested value. */
-    private Coin makeMoney(double value) {
+    private Valuable makeMoney(double value) {
+    	if(value == 20 || value == 50 || value == 100 || value == 500 || value == 1000){
+    		return new BankNote(value, CURRENCY);
+    	}
     	return new Coin(value, CURRENCY);
     }
 

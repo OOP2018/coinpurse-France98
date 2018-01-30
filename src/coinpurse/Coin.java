@@ -9,7 +9,7 @@ import java.util.List;
  * @author Phanuwatch Luangpradit
  *
  */
-public class Coin implements Comparable<Coin>{
+public class Coin implements Valuable{
 	private double value;
 	private String currency;
 	
@@ -60,10 +60,10 @@ public class Coin implements Comparable<Coin>{
 	 * Compare the value of two coins.
 	 * @param coin
 	 */
-	public int compareTo(Coin coin){
-		if(this.value < coin.value){
+	public int compareTo(Valuable coin){
+		if(this.value < coin.getValue()){
 			return -1;
-		}else if(this.value > coin.value){
+		}else if(this.value > coin.getValue()){
 			return 1;
 		}else{
 			return 0;
