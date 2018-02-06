@@ -25,7 +25,7 @@ public class MoneyUtil {
 	 * Filter the coin by using currency
 	 * @param coins
 	 * @param currency
-	 * @return
+	 * @return the list name's same
 	 */
 	public static List<Valuable> filterByCurrency(List<Valuable> coins, String currency) {
 		List<Valuable> same = new ArrayList<>();
