@@ -1,9 +1,5 @@
 package coinpurse;
 
-import java.lang.Comparable;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Coin represents coinage (money) with a fixed value and currency.
  * @author Phanuwatch Luangpradit
