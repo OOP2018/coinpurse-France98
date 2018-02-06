@@ -6,6 +6,14 @@ package coinpurse;
  *
  */
 public interface Valuable extends Comparable<Valuable>{
+	
+	/**
+	 * Get money value
+	 */
 	public double getValue();
+	
+	/**
+	 * Get money currency
+	 */
 	public String getCurrency();
 }
