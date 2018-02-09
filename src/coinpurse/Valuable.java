@@ -9,11 +9,13 @@ public interface Valuable extends Comparable<Valuable>{
 	
 	/**
 	 * Get money value
+	 * @return the value of money
 	 */
 	public double getValue();
 	
 	/**
 	 * Get money currency
+	 * @return the currency of money
 	 */
 	public String getCurrency();
 }
