@@ -229,7 +229,6 @@ public class PurseTest {
 		}
 	}
 
-
 	@Test(timeout=1000)
 	public void testImpossibleWithdraw() {
 		Purse purse = new Purse(10);
@@ -242,6 +241,26 @@ public class PurseTest {
 		assertNull( purse.withdraw(30) );
 		purse.insert(makeBankNote(50));
 		assertNull(purse.withdraw(30));
+	}
+	
+	/**
+	 * Test Withdraw that have Valuable in parameter
+	 */
+	@Test(timeout=1000)
+	public void testValuableWithdraw(){
+		Purse purse = new Purse(10);
+		Valuable b1 = new BankNote(10,"baht");
+		Valuable b2 = new BankNote(10,"dollar");
+		Valuable b3 = new BankNote(10,"yen");
+		Valuable b4 = new BankNote(10,"ringgit");
+		purse.insert(b1);
+		purse.insert(b2);
+		purse.insert(b3);
+		purse.insert(b4);
+		Valuable[] result = purse.withdraw(new BankNote(10 , "dollar"));
+		assertTrue(result != null);
+		assertEquals(1, result.length);
+		assertSame(b2, result[0]);
 	}
 	
 	/**
