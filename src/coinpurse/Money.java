@@ -56,7 +56,7 @@ public class Money implements Valuable{
 	}
 
 	/**
-	 * 
+	 * Compare the currency if currency is same, it will compare the value.
 	 */
 	@Override
 	public int compareTo(Valuable o) {
