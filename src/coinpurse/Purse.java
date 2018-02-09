@@ -107,21 +107,32 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {
-		if (amount < 0) {
+		Money value = new Money(amount, "BTC");
+		return withdraw(value);
+	}
+
+	/**
+	 * The Valuable version of withdraw
+	 * @param amount is the amount to withdraw
+	 * @return array of money for money withdraw,or null if cannot withdraw requested amount
+	 */
+	public Valuable[] withdraw(Valuable amount) {
+		double amount1 = amount.getValue();
+		if (amount.getValue() < 0) {
 			return null;
 		}
 		Collections.sort(money1,comp);
 		Collections.reverse(money1);
 		ArrayList<Valuable> list = new ArrayList<Valuable>();
-		if (getBalance() >= amount) {
+		if (getBalance() >= amount1) {
 			for (int i = 0; i < money1.size() ; i++) {
-				if (amount - money1.get(i).getValue() >= 0) {
-					amount = amount - money1.get(i).getValue();
+				if (amount1 - money1.get(i).getValue() >= 0 && amount.getCurrency().equalsIgnoreCase(money1.get(i).getCurrency())) {
+					amount1 = amount1 - money1.get(i).getValue();
 					list.add(money1.get(i));
 				}
 			}
 		}
-		if (amount != 0) {
+		if(amount1 != 0){
 			return null;
 		}
 		for (int i = 0; i < list.size(); i++) {
@@ -130,6 +141,7 @@ public class Purse {
 		Valuable[] array = new Valuable[list.size()];
 		list.toArray(array);
 		return array;
+
 	}
 
 	/**
@@ -137,11 +149,23 @@ public class Purse {
 	 * return whatever is a useful description.
 	 */
 	public String toString() {
-		return count() + " coins with value " + getBalance();
+		return "Balance: " + getBalance();
 	}
 
-	public List<Valuable> getMoney(){
-		return money1;
-	}
+
+//	public static void main(String[] args) {
+//		Purse purse = new Purse(10);
+//		Valuable b1 = new Money(10, "baht");
+//		Valuable b2 = new Money(10, "dollar");
+//		Valuable b3 = new Money(10, "baht");
+//		Valuable b4 = new Money(10, "ringgit");
+//
+//		purse.insert(b2);
+//		purse.insert(b3);
+//		purse.insert(b4);
+//		Valuable[] v = purse.withdraw(new Money(10, "dollar"));
+//		for(Valuable a : v) {
+//			System.out.println(a.getValue() + a.getCurrency());
+//		}
+//	}
 }
-
