@@ -5,52 +5,16 @@ package coinpurse;
  * @author Phanuwatch Luangpradit
  *
  */
-public class Coin implements Valuable{
-	private double value;
-	private String currency;
-	
+public class Coin extends Money{
 	/**
 	 * Constructor for coin with a value and currency
 	 * @param value of the coin
 	 * @param currency of the coin
 	 */
 	public Coin(double value, String currency){
-		this.value = value;
-		this.currency = currency;
+		super(value,currency);
 	}
 	
-	/**
-	 * Return the value of coin
-	 * @return value of coin
-	 */
-	public double getValue(){
-		return this.value;
-	}
-	
-	/**
-	 * Return the coin currency
-	 * @return currency of coin
-	 */
-	public String getCurrency(){
-		return this.currency;
-	}
-	
-	/**
-	 * Two coin are equal if they have same value and currency.
-	 */
-	public boolean equals(Object arg){
-		if(arg == null){
-			return false;
-		}
-		if(getClass() != arg.getClass()){
-			return false;
-		}
-		Coin other = (Coin) arg;
-		if(this.getValue() == other.getValue() && this.getCurrency().equalsIgnoreCase(other.getCurrency())){
-			return true; 
-		}
-		return false;
-	}
 	
 	/**
 	 * Compare the value of two coins.
