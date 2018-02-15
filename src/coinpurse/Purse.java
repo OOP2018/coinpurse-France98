@@ -107,7 +107,7 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {
-		Money value = new Money(amount, "BTC");
+		Money value = new Money(amount, "Baht");
 		return withdraw(value);
 	}
 
@@ -123,12 +123,13 @@ public class Purse {
 		}
 		Collections.sort(money1,comp);
 		Collections.reverse(money1);
+		List<Valuable> m = MoneyUtil.filterByCurrency(money1, amount.getCurrency());
 		ArrayList<Valuable> list = new ArrayList<Valuable>();
 		if (getBalance() >= amount1) {
-			for (int i = 0; i < money1.size() ; i++) {
-				if (amount1 - money1.get(i).getValue() >= 0 && amount.getCurrency().equalsIgnoreCase(money1.get(i).getCurrency())) {
-					amount1 = amount1 - money1.get(i).getValue();
-					list.add(money1.get(i));
+			for(Valuable v : m){
+				if(amount1 - v.getValue() >= 0){
+					amount1 = amount1 - v.getValue();
+					list.add(v);					
 				}
 			}
 		}
