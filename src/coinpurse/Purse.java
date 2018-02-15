@@ -126,12 +126,19 @@ public class Purse {
 		List<Valuable> m = MoneyUtil.filterByCurrency(money1, amount.getCurrency());
 		ArrayList<Valuable> list = new ArrayList<Valuable>();
 		if (getBalance() >= amount1) {
-			for(Valuable v : m){
-				if(amount1 - v.getValue() >= 0){
-					amount1 = amount1 - v.getValue();
-					list.add(v);					
+//			for(Valuable v : m){
+//				if(amount1 - v.getValue() >= 0){
+//					amount1 = amount1 - v.getValue();
+//					list.add(v);					
+//				}
+//			}
+			for(int i = 0; i < m.size() ; i++){
+				if(amount1 - m.get(i).getValue() >= 0){
+					amount1 = amount1 - m.get(i).getValue();
+					list.add(m.get(i));					
 				}
 			}
+				
 		}
 		if(amount1 != 0){
 			return null;
