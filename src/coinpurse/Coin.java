@@ -15,27 +15,12 @@ public class Coin extends Money{
 		super(value,currency);
 	}
 	
-	
-	/**
-	 * Compare the value of two coins.
-	 * @param coin
-	 */
-	public int compareTo(Valuable coin){
-		if(this.value < coin.getValue()){
-			return -1;
-		}else if(this.value > coin.getValue()){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
 	/**
 	 * Tell value and currency
 	 * @return the sentence that tell value and currency.
 	 */
 	public String toString(){
-		return this.value + "-" + this.currency;
+		return getValue() + "-" + getCurrency();
 	}
 	
 }

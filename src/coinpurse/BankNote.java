@@ -33,22 +33,7 @@ public class BankNote extends Money{
 	 * @return the sentence
 	 */
 	public String toString(){
-		return getValue() + "-" + getCurrency() + " note [" + serialNumber + "]";
-	}
-
-	/**
-	 * Compare the value of two banknotes
-	 * @param money
-	 */
-	@Override
-	public int compareTo(Valuable money) {
-		if(this.value < money.getValue()){
-			return -1;
-		}else if(this.value > money.getValue()){
-			return 1;
-		}else{
-			return 0;
-		}
+		return getValue() + "-" + getCurrency() + " note [" + getSerial() + "]";
 	}
 	
 }
