@@ -107,7 +107,8 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {
-		Money value = new Money(amount, "Baht");
+		MoneyFactory m1 = MoneyFactory.getInstance();
+		Money value = new Money(amount, m1.getCurrency());
 		return withdraw(value);
 	}
 
@@ -157,7 +158,7 @@ public class Purse {
 	 * return whatever is a useful description.
 	 */
 	public String toString() {
-		return "Balance: " + getBalance();
+		return String.format("Balance : %.2f", getBalance());
 	}
 
 
