@@ -1,5 +1,7 @@
 package coinpurse;
 
+import java.text.DecimalFormat;
+
 /**
  * Coin represents coinage (money) with a fixed value and currency.
  * @author Phanuwatch Luangpradit
@@ -20,7 +22,12 @@ public class Coin extends Money{
 	 * @return the sentence that tell value and currency.
 	 */
 	public String toString(){
-		return getValue() + "-" + getCurrency();
+		if ( currency.equalsIgnoreCase("Ringgit")) {
+            return String.format("%.2f-Sen coin", (getValue()*100));
+        }
+        else {
+            return String.format("%.2f-%s coin", getValue(), getCurrency());
+        }
 	}
 	
 }
