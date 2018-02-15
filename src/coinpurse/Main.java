@@ -13,6 +13,7 @@ public class Main {
      */
     public static void main( String[] args ) {
     	Purse purse = new Purse(10);
+    	MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
     	ConsoleDialog ui = new ConsoleDialog(purse);
     	ui.run();
     }
