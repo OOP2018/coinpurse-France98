@@ -29,9 +29,9 @@ public class PurseTest {
      * Sets up the test fixture.
      * Called before every test method.
      */
-    @Before
-    public void setUp() {
-    	// nothing to initialize
+	@Before
+    public void setUp(){
+        MoneyFactory.setMoneyFactory(new ThaiMoneyFactory());
     }
     
     /** Make a coin with the default currency. To save typing "new Coin(...)" */
