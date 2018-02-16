@@ -1,9 +1,21 @@
 package coinpurse;
 
+/**
+ * Subclass of MoneyFactory
+ * Create and get currency of money
+ * @author France98
+ *
+ */
 public class MalayMoneyFactory extends MoneyFactory{
 	
 	private String currency = "Ringgit";
 
+	/**
+	 * Create the money
+	 * @return if it's a coin return coin
+	 * 		   if it's a bank return BankNote
+	 * 		   if value is not valid currency amount, then throw IllegalArgumentException
+	 */
 	@Override
 	public Valuable createMoney(double value) {
 		if(value == 0.05 || value == 0.1 || value == 0.2 || value == 0.5){
@@ -15,6 +27,10 @@ public class MalayMoneyFactory extends MoneyFactory{
 		}
 	}
 
+	/**
+	 * Get the money currency
+	 * @return Malay Ringgit currency
+	 */
 	@Override
 	public String getCurrency() {
 		return currency;
