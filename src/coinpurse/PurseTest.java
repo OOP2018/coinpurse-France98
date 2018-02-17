@@ -275,5 +275,3 @@ public class PurseTest {
 		return sum;
 	}
 }
-
-
