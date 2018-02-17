@@ -152,6 +152,10 @@ public class Purse {
 		return array;
 
 	}
+	
+	public List<Valuable> getMoney(){
+		return money1;
+	}
 
 	/**
 	 * toString returns a string description of the purse contents. It can
