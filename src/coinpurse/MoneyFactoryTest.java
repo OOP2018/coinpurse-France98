@@ -37,9 +37,7 @@ public class MoneyFactoryTest {
         assertEquals(6, purse.getCapacity());
         assertEquals(false, purse.isFull());
         assertEquals(0, purse.count());
-    }
-
-    
+    }  
 
     /** Insert some coins. Easy test. */
     @Test
@@ -210,6 +208,28 @@ public class MoneyFactoryTest {
 		assertNull( purse.withdraw(30) );
 		purse.insert(m.createMoney(50));
 		assertNull(purse.withdraw(30));
+	}
+	
+	/**
+	 * Test MoneyFactory as Singleton
+	 */
+	@Test(timeout=1000)
+	public void testSingleton(){
+		MoneyFactory mf = MoneyFactory.getInstance();
+		MoneyFactory mf2 = MoneyFactory.getInstance();
+		assertTrue(mf==mf2);
+	}
+	
+	/**
+	 * Test the setMoneyFactory
+	 * if setMoneyFactory as MalayMoneyFactory
+	 * the currency need to be "Ringgit"
+	 */
+	@Test(timeout= 1000)
+	public void testSetMoneyFactory(){
+		MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
+		MoneyFactory test = MoneyFactory.getInstance();
+		assertEquals(test.getCurrency(),"Ringgit");		
 	}
 	
 	/**

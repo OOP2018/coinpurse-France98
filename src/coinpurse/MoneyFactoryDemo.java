@@ -8,17 +8,18 @@ package coinpurse;
 public class MoneyFactoryDemo {
 
 	public static void main(String[] args) {
-		MoneyFactory.setMoneyFactory(new ThaiMoneyFactory());
-		MoneyFactory mf = MoneyFactory.getInstance();
+		MoneyFactory.setMoneyFactory(new ThaiMoneyFactory()); //set as a ThaiMoneyFactory
+		MoneyFactory mf = MoneyFactory.getInstance(); //GetInstance
 		MoneyFactory mf2 = MoneyFactory.getInstance();
-		System.out.println(mf == mf2);
+		System.out.println(mf == mf2);  //if it Singleton it will return true
 		System.out.println("-----------------------------------");
 		Purse purse = new Purse(5);
-		purse.insert(mf.createMoney(1));
+		purse.insert(mf.createMoney(1)); //create money by using double valuable
 		purse.insert(mf.createMoney(5));
 		purse.insert(mf.createMoney(10));
-		purse.insert(mf.createMoney(50));
-		purse.insert(mf.createMoney(100));
-		System.out.println(purse.getMoney());
+		purse.insert(mf.createMoney("50")); //create money by using String valuable
+		purse.insert(mf.createMoney("100")); 
+		System.out.println(purse.getMoney());  
+		
 	}
 }
