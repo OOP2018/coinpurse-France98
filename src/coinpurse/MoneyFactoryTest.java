@@ -230,7 +230,7 @@ public class MoneyFactoryTest {
 		MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
 		MoneyFactory test = MoneyFactory.getInstance();
 		assertEquals(test.getCurrency(),"Ringgit");		
-	}
+	} 
 	
 	/**
 	 * Sum the value of some coins.
