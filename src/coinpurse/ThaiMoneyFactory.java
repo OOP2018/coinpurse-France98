@@ -23,7 +23,7 @@ public class ThaiMoneyFactory extends MoneyFactory{
 		}else if(value == 20 || value == 50 || value == 100 || value == 500 || value == 1000){
 			return new BankNote(value, currency);
 		}else{
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Not valid currency amount");
 		}
 	}
 
