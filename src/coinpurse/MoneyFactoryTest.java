@@ -225,7 +225,7 @@ public class MoneyFactoryTest {
 	 * if setMoneyFactory as MalayMoneyFactory
 	 * the currency need to be "Ringgit"
 	 */
-	@Test(timeout= 1000)
+	@Test
 	public void testSetMoneyFactory(){
 		MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
 		MoneyFactory test = MoneyFactory.getInstance();
