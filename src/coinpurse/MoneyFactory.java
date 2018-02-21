@@ -29,7 +29,11 @@ public abstract class MoneyFactory {
 	 * @return createMoney
 	 */
 	public Valuable createMoney(String value){
-		return createMoney(Double.parseDouble(value));
+		try{
+			return createMoney(Double.parseDouble(value));			
+		}catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("Invalid argument");
+		}
 	}
 	
 	/**
