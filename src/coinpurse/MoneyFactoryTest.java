@@ -230,7 +230,21 @@ public class MoneyFactoryTest {
 		MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
 		MoneyFactory test = MoneyFactory.getInstance();
 		assertEquals(test.getCurrency(),"Ringgit");		
-	} 
+	}
+	
+	/**
+	 * Test create money
+	 */
+	@Test
+	public void testCreateMoney(){
+		Valuable money1 = m.createMoney(50);
+		Valuable money2 = m.createMoney(5);
+		Valuable money3 = m.createMoney(500);
+		
+		assertEquals(50, money1.getValue(),TOL);
+		assertEquals(5, money2.getValue(),TOL);
+		assertEquals(500, money3.getValue(),TOL);
+	}
 	
 	/**
 	 * Sum the value of some coins.
