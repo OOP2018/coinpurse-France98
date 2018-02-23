@@ -19,6 +19,8 @@ public class MoneyFactoryDemo {
 		purse.insert(mf.createMoney(10));
 		purse.insert(mf.createMoney("50")); //create money by using String valuable
 		purse.insert(mf.createMoney("100")); 
+		Money money = new Money(50,"Baht");
+		System.out.println(mf.createMoney(50)); //create money by using double valuable
 		System.out.println(purse.getMoney());  
 		
 	}
