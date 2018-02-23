@@ -246,6 +246,20 @@ public class MoneyFactoryTest {
 		assertEquals(500, money3.getValue(),TOL);
 	}
 	
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testExceptionCase() {
+		MoneyFactory.setMoneyFactory(new ThaiMoneyFactory());
+		MoneyFactory mf = MoneyFactory.getInstance();
+		String a = "abc";
+		String b = "1000000";
+		double c = -1;
+
+		Valuable v = m.createMoney(a);
+		Valuable v2 = m.createMoney(b);
+		Valuable v3 = m.createMoney(c);
+	}
+	
 	/**
 	 * Sum the value of some coins.
 	 * @param coins array of coins
