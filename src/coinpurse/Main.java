@@ -2,6 +2,9 @@ package coinpurse;
 
 import java.util.ResourceBundle;
 
+import strategy.GreedyWithdraw;
+import strategy.WithdrawStrategy;
+
 /**
  * A main class to create objects and connect objects together.
  * The user interface needs a reference to coin purse.
@@ -16,6 +19,7 @@ public class Main {
     public static void main( String[] args ) {
     	init();
     	Purse purse = new Purse(10);
+    	purse.setWithdrawStrategy(new GreedyWithdraw());
     	ConsoleDialog ui = new ConsoleDialog(purse);
     	ui.run();
     }

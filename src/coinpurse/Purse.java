@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import strategy.GreedyWithdraw;
+import strategy.RecursionWithdraw;
+import strategy.WithdrawStrategy;
+
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the
  * balance, and check if the purse is full.
@@ -15,6 +19,8 @@ public class Purse {
 	/** Collection of objects in the purse. */
 	List<Valuable> money1 = new ArrayList<Valuable>();
 	Comparator<Valuable> comp = new ValueComparator();
+	WithdrawStrategy strategy;
+	
 
 	/**
 	 * Capacity is maximum number of items the purse can hold. Capacity is set
@@ -30,6 +36,11 @@ public class Purse {
 	 */
 	public Purse(int capacity) {
 		this.capacity = capacity;
+		strategy = new GreedyWithdraw();
+	}
+	
+	public void setWithdrawStrategy(WithdrawStrategy strategy){
+		this.strategy = strategy;
 	}
 
 	/**
@@ -118,37 +129,18 @@ public class Purse {
 	 * @return array of money for money withdraw,or null if cannot withdraw requested amount
 	 */
 	public Valuable[] withdraw(Valuable amount) {
-		double amount1 = amount.getValue();
-		if (amount.getValue() < 0) {
+		List<Valuable> pick = null;
+		if(getBalance() >= amount.getValue()){
+			pick = strategy.withdraw(amount, money1);			
+		}
+		if(pick == null){
 			return null;
 		}
-		Collections.sort(money1,comp);
-		Collections.reverse(money1);
-		List<Valuable> m = MoneyUtil.filterByCurrency(money1, amount.getCurrency());
-		ArrayList<Valuable> list = new ArrayList<Valuable>();
-		if (getBalance() >= amount1) {
-//			for(Valuable v : m){
-//				if(amount1 - v.getValue() >= 0){
-//					amount1 = amount1 - v.getValue();
-//					list.add(v);					
-//				}
-//			}
-			for(int i = 0; i < m.size() ; i++){
-				if(amount1 - m.get(i).getValue() >= 0){
-					amount1 = amount1 - m.get(i).getValue();
-					list.add(m.get(i));					
-				}
-			}
-				
+		for (int i = 0; i < pick.size(); i++) {
+			money1.remove(pick.get(i));
 		}
-		if(amount1 != 0){
-			return null;
-		}
-		for (int i = 0; i < list.size(); i++) {
-			money1.remove(list.get(i));
-		}
-		Valuable[] array = new Valuable[list.size()];
-		list.toArray(array);
+		Valuable[] array = new Valuable[pick.size()];
+		pick.toArray(array);
 		return array;
 
 	}

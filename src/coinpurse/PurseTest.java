@@ -161,7 +161,7 @@ public class PurseTest {
 		
 		double [] values2 = {20,50,100,500};
 		
-		for(double value : values){
+		for(double value : values2){
 			Valuable bank = makeBankNote(value);
 			assertTrue(purse.insert(bank));
 			assertEquals(value, purse.getBalance() ,TOL);
