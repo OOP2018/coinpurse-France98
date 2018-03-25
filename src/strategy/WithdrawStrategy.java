@@ -4,7 +4,7 @@ import java.util.List;
 
 import coinpurse.Valuable;
 
-/**
+/** 
  * Interface for Withdraw using Strategy Pattern
  * @author Phanuwatch Luangpradit
  *

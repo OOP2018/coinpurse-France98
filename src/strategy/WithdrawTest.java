@@ -20,7 +20,7 @@ import coinpurse.ThaiMoneyFactory;
 import coinpurse.Valuable;
 import coinpurse.ValueComparator;
 
-public class WithdrawTest {
+public class WithdrawTest { 
 
 	private WithdrawStrategy strategy;
 

@@ -12,7 +12,7 @@ import coinpurse.ValueComparator;
 /**
  * Withdraw using Greedy Algorithm
  * @author Phanuwatch Luangpradit
- *
+ * 
  */
 public class GreedyWithdraw implements WithdrawStrategy{
 	
